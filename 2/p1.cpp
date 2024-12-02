@@ -15,14 +15,11 @@ int main(void)
         int found = 1;
         int slope = first - second;
         if (abs(slope) > 3 || slope == 0) found = 0;
-        cout << "slope " << slope << endl;
         int current = second;
         while (stream >> number) 
         {
-            cout << "Current " << number - current << endl;
             if((number - current) * -slope <= 0 || abs(number - current) > 3)
             {
-                cout << "wrong num " << number;
                 found = 0;
                 break;
             }
@@ -31,14 +28,6 @@ int main(void)
                 current = number;
             }
 
-        }
-        if (found)
-        {
-            cout << "safe" << endl;
-        }
-        else
-        {
-            cout << "not safe" << endl;
         }
         result += found;
     }
