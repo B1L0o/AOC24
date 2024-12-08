@@ -16,16 +16,56 @@ void print_vector(vector<vector<int>> v)
     cout << endl;
 }
 
+
+bool change_direction(vector<vector<int>> v, size_t x, size_t y, int i, int j)
+{  
+        if (x == 0 && i == -1) return false;
+        if (x == v.size()-1 && i== 1) return false;
+        if (y == 0 && j == -1) return false;
+        if (y == v[i].size()-1 && j == 1) return false;
+        if (v[x+i][y+j] == 'O') return false;
+        //if (v[x+i][y+j] == '#') return false;
+        v[x+i][y+j] = 'O';
+        while(1)
+        {
+
+            while(x < v.size() && x >= 0 && y >= 0 && y < v[x].size() and v[x][y] != '#' and v[x][y] != 'O')
+            {
+                if (v[x][y] == '.') v[x][y] = '0';
+                if (v[x][y] != '#' && v[x][y] != '^' && v[x][y] != '.') v[x][y] ++;
+                if (v[x][y] == '4') 
+                {
+                    return true;
+                }
+                x+=i;
+                y+=j;
+            }
+            if (x >= v.size() || x < 0 || y < 0 || y >= v[x].size())
+            {
+                return false;
+            }
+            x -= i;
+            y -= j;
+            int temp = i;
+            i = j;
+            j = -temp;
+        }
+        return true;
+
+}
 int path_count(vector<vector<int>> &v, size_t x, size_t y)
 {
     int count = 0, i = -1,j = 0;
     while(1)
     {
+
         while(x < v.size() && x >= 0 && y >= 0 && y < v[x].size() and (v[x][y] != '#' ))
         {
-            if (v[x][y] != 'X')
+            if(change_direction(v,x,y,i,j) == true and v[x+i][y+j] != '#')// DEUXIEME CONDITION POSE PROBLEME ? 
+            {
+                v[x+i][y+j] = 'O';
                 count ++;
-            v[x][y] = 'X';
+            }
             x+=i;
             y+=j;
         }
