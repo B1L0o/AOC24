@@ -6,28 +6,6 @@ using namespace std;
 #include <map>
 #include <algorithm>
 
-
-void print_map(map<int,vector<int>> map)
-{
-    //PRINT MAP CONTENT
-    for(auto it = map.cbegin(); it != map.cend(); ++it)
-    {
-         cout << "key:" << it->first << "| values:  ";
-         for (auto i : it->second) cout << i << " ";
-         cout << endl;
-    }
-    cout << endl;
-}
-
-void print_vector(vector<int> v)
-{
-    for (auto i : v) cout << i << " ";
-    cout << endl;
-}
-
-
-
-
 bool is_present(int x, vector<int> v)
 {
     for(size_t i = 0; i < v.size(); i++)
@@ -46,7 +24,6 @@ int isvalid(vector<int>&v, map<int,vector<int>> &map)
             if (!is_present(v[j],map[v[i]])) return 0;
         }
     }
-    //print_vector(v);
     return 1;
 }
 
@@ -61,14 +38,12 @@ int parse_input(string line, map<int,vector<int>> &map)
     {
         v.push_back(number);
     }
-    //print_vector(v);
     if (isvalid(v,map)) return v[v.size()/2];
     return 0;
 }
 
 void fill_map(string line, map<int, vector<int>> &map)
 {
-     //print_map(map);
      int n1 = 0, n2 = 0;
      bool found = false;
      for (size_t i =0; i < line.length(); i++)
