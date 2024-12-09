@@ -3,19 +3,6 @@ using namespace std;
 #include <iostream>
 #include <string>
 
-void print_vector(vector<vector<int>> v)
-{
-    for (size_t i = 0; i < v.size(); i++)
-    {
-        for (size_t j = 0; j < v[i].size(); j++)
-        {
-            printf("%c ",v[i][j]);
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
-
 
 bool change_direction(vector<vector<int>> v, size_t x, size_t y, int i, int j)
 {  
@@ -103,7 +90,6 @@ int main(void)
         j++;
     }
     int counter = path_count(v,x,y);
-    print_vector(v);
     cout << counter;
     return counter;
 }

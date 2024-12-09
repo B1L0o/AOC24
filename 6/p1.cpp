@@ -3,19 +3,6 @@ using namespace std;
 #include <iostream>
 #include <string>
 
-void print_vector(vector<vector<int>> v)
-{
-    for (size_t i = 0; i < v.size(); i++)
-    {
-        for (size_t j = 0; j < v[i].size(); j++)
-        {
-            printf("%c ",v[i][j]);
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
-
 int path_count(vector<vector<int>> &v, size_t x, size_t y)
 {
     int count = 0, i = -1,j = 0;
