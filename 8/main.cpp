@@ -11,8 +11,8 @@ void fill_freq(vector<vector<int>> map, vector<vector<int>> &freq, size_t y, siz
     size_t dx = (j-x) * 2;
     size_t new_y = dy + y;
     size_t new_x = dx + x;
-    if (new_y >= 0 && new_y < map.size() && new_x >= 0 && new_x < map[0].size() 
-            && map[new_y][new_x] != antenna)
+    if (new_y >= 0 && new_y < map.size() && new_x >= 0 && new_x < map[0].size())
+            //&& map[new_y][new_x] != antenna)
     {
         freq[new_y][new_x]='#'; 
     }
@@ -26,7 +26,7 @@ void fill_locations(vector<vector<int>> map, vector<vector<int>> &freq, size_t y
     {
         for(size_t j = 0; j < map[i].size(); j++)
         {
-            if(map[i][j] == antenna && x != i && y!=j)
+            if(map[i][j] == antenna && x != j && y!=i)
             {
                 fill_freq(map,freq,y,x,i,j,antenna);
             }
@@ -68,6 +68,7 @@ int main(void)
                 count += (freq[i][j] == '#');
         }
     }
+    DBG_VV(map);
     DBG_VV(freq);
     cout << count;
 }
